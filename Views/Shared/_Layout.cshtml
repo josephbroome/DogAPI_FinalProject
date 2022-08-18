@@ -12,34 +12,40 @@
     <link rel="stylesheet" href="~/DogAPI_FinalProject.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header >
-        <section>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header>
+        <section style="display:inline ;color:dodgerblue">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light text-decoration-underline  bg-white border-bottom box-shadow mb-3">
                 <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Dog Database</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                         <ul class="navbar-nav flex-grow-1 nav-fill">
-                            <li class="nav-item">
+                            <li class="nav-item opacity-75">
                                 <a class="nav-link text-dark" style="color:dodgerblue" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item opacity-75">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Dog" asp-action="GetDogBreeds">All Breeds</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CatGif">Dont click</a>
+                            <li class="nav-item opacity-75">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="DogGif">Dog GIF</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item opacity-75">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CatGif">Cat GIF</a>
+                            </li>
+                            <li class="nav-item opacity-75">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login/Sign</a>
+                            </li>
+                            <li class="nav-item opacity-75">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                            </li>
+                            <li class="nav-item opacity-75">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                            <li class="nav-item opacity-75">
                                 <div id="sb-search" class="border-5">
                                     @using (Html.BeginForm("GetDogByBreed", "Dog", FormMethod.Get))
                                     {
-                                        <input type="text" name="Breed" class="form-control" placeholder="Search Breed" />
-
-
-                                        <input type="submit" name="Search" class="btn" />
+                                        <div id="sb-search" class= "sb-search">
+                                            <input name="Breed" type="search"  class="form-control" placeholder="Search Breed" />
+                                        </div>
 
                                     }
                                 </div>

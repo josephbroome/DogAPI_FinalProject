@@ -29,10 +29,15 @@
         box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
     }
 </style>
-<script async src="https://cse.google.com/cse.js?cx=d1de8761617de450d">
-</script>
 <div style="color:dodgerblue">Search For Shelters Near You</div>
 <div class="gcse-search" style="margin-right:10px"> </div>
+
+<div class="first" style="color:dodgerblue">
+    <p>Upload Image</p>
+    <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)"></p>
+    <p><img id="output" width="200" /></p>
+</div>
+
 <div >
     <table class="table table-hover table-striped table-dark position-sticky">
         <thead style="position:sticky">
@@ -72,3 +77,12 @@
     </table>
 
 </div>
+<script type="text/javascript">
+    var loadFile = function (event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+
+</script>
+<script async src="https://cse.google.com/cse.js?cx=d1de8761617de450d">
+</script>

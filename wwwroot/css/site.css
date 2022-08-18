@@ -37,3 +37,69 @@ nav{
     text-size-adjust:auto;
 }
 
+
+input[type=search] {
+    background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+    border: solid 1px #ccc;
+    padding: 9px 10px 9px 32px;
+    width: 200px;
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+
+#click input[type=search] {
+    width: 15px;
+    padding-left: 10px;
+    color: transparent;
+    cursor: pointer;
+}
+
+    #click input[type=search]:hover {
+        background-color: #fff;
+    }
+
+    #click input[type=search]:focus {
+        width: 130px;
+        padding-left: 32px;
+        color: #000;
+        background-color: #fff;
+        cursor: auto;
+    }
+
+#click input:-moz-placeholder {
+    color: transparent;
+}
+
+#click input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.carousel-control-prev .sr-only {
+    right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.carousel-control-next .sr-only {
+    left: 0 !important;
+    margin-right: 0 !important;
+    //or you can increase this
+}
+
+.carousel-control-prev-icon {
+    background-color: black !important;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%231b6ec2' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%231b6ec2' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+.card-body {
+    background-color: whitesmoke;
+    border-bottom-color: black;
+}

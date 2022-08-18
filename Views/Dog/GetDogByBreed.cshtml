@@ -5,6 +5,12 @@
 <div style="color:dodgerblue">Search For Shelters Near You</div>
 <div class="gcse-search" style="margin-right:10px"> </div>
 
+<div class="first" style="color:dodgerblue">
+    <p>Upload Image</p>
+    <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)"></p>
+    <p><img id="output" width="200" /></p>
+</div>
+
 <h2 style="color: dodgerblue ; font-family: Arial; text-align: center">Dog information </h2>
 @if (Model == null)
 {
@@ -49,26 +55,13 @@ else
 
     </table>
 }
-@*
-<div>
-    <section>
-        @foreach(var img in Model.Dogs){
+<script async src="https://cse.google.com/cse.js?cx=d1de8761617de450d">
+</script>
 
-            <div>
-                <img class = "card-img-top" stlye="width:auto ; height: auto" src=@($"https://cdn2.thedogapi.com/images/{@img.ImageID}.jpg") />
-            </div>
-        }
-    </section>
-</div>*@
+<script type="text/javascript">
+    var loadFile = function (event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
 
-<div>
-    <section>
-       
-
-
-
-
-    </section>
-
-
-</div>
+</script>
