@@ -1,0 +1,74 @@
+﻿@model GetDogsByBreedResponse
+
+<script async src="https://cse.google.com/cse.js?cx=d1de8761617de450d">
+</script>
+<div style="color:dodgerblue">Search For Shelters Near You</div>
+<div class="gcse-search" style="margin-right:10px"> </div>
+
+<h2 style="color: dodgerblue ; font-family: Arial; text-align: center">Dog information </h2>
+@if (Model == null)
+{
+    <p></p>
+    <p style="color: dodgerblue ; font-size: large ; font-family: Arial ; text-align: center">@ViewData["userInput"] not found. Please try again.</p>
+}
+
+
+
+else
+{
+    <table class="table table-hover table-striped table-dark">
+        <tr>
+            <th style="color:dodgerblue; font-size: large">Breed</th>
+            <th style ="color:dodgerblue; font-size: large">Weight</th>
+            <th style="color:dodgerblue; font-size: large">Height</th>
+            <th style="color:dodgerblue; font-size: large">Bred For</th>
+            <th style="color:dodgerblue; font-size: large">Breed Group</th>
+            <th style="color:dodgerblue; font-size: large">Life Span</th>
+            <th style="color:dodgerblue; font-size: large">Temperament</th>
+            <th style="color:dodgerblue; font-size: large">Origin</th>
+            <th style="color:dodgerblue; font-size: large">Image</th>
+        </tr>
+
+        @foreach (var dog in Model.Dogs)
+        {
+            <tr style="color:dodgerblue; font-size: large">
+                <td>@dog.DogBreed</td>
+                <td>@dog.DogWeight lbs</td>
+                <td>@dog.DogHeight inches</td>
+                <td>@dog.BredFor</td>
+                <td>@dog.BreedGroup</td>
+                <td>@dog.LifeSpan</td>
+                <td>@dog.Temperament</td>
+                <td>@dog.Origin</td>
+                <td><img class=" card-img-top" stlye="width:400px ; height: 500px" src=@($"https://cdn2.thedogapi.com/images/{@dog.ImageID}.jpg") /></td>
+
+
+
+            </tr>
+        }
+
+    </table>
+}
+@*
+<div>
+    <section>
+        @foreach(var img in Model.Dogs){
+
+            <div>
+                <img class = "card-img-top" stlye="width:auto ; height: auto" src=@($"https://cdn2.thedogapi.com/images/{@img.ImageID}.jpg") />
+            </div>
+        }
+    </section>
+</div>*@
+
+<div>
+    <section>
+       
+
+
+
+
+    </section>
+
+
+</div>

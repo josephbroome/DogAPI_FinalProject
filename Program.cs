@@ -1,7 +1,25 @@
+using DogAPI_FinalProject;
+using MySql.Data.MySqlClient;
+using System.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//builder.Services.AddScoped<IDbConnection>((s) =>
+//{
+//    IDbConnection conn = new  (builder.Configuration.GetConnectionString(""));
+//    conn.Open();
+//    return conn;
+//});
+
+builder.Services.AddSingleton<DogAPIclient, DogAPIclient>();
+
+
+
+
+
 
 var app = builder.Build();
 

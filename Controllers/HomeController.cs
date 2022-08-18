@@ -23,6 +23,12 @@ namespace DogAPI_FinalProject.Controllers
             return View();
         }
 
+
+        public IActionResult CatGif()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
