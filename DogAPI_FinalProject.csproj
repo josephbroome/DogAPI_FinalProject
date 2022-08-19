@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\lib\bootstrap\dist\css\assests\" />
+    <Folder Include="wwwroot\uploaded\" />
   </ItemGroup>
 
   <ItemGroup>

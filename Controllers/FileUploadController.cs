@@ -6,52 +6,47 @@ using System;
 using System.IO;
 using System.Web;
 using Grpc.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DogAPI_FinalProject.Controllers
 {
     public class FileUploadController : Controller
     {
-        // GET: FileUpload    
-        public ActionResult Index()
+
+        private readonly string _uploaded = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploaded");
+
+        [Authorize]
+        public IActionResult Index()
         {
             return View();
         }
+
+        [Authorize]
         [HttpPost]
-        public ActionResult UploadFiles(HttpPostedFileBase file)
+        public async Task<IActionResult> Upload(IFormFile formFile)
         {
-            if (ModelState.IsValid)
+            if (formFile != null)
             {
-                try
-                {
+                var path = Path.Combine(_uploaded, Guid.NewGuid() + Path.GetExtension(formFile.FileName));
 
-
-                    if (file != null)
-                    {
-                        string path = Path.Combine(("~/UploadedFiles"), Path.GetFileName(file.FileName));
-                        file.SaveAs(path);
-
-                    }
-                    ViewBag.FileStatus = "File uploaded successfully.";
-                }
-                catch (Exception)
-                {
-
-                    ViewBag.FileStatus = "Error while file uploading.";
-                }
+                using var stream = new FileStream(path, FileMode.Create);
+                await formFile.CopyToAsync(stream);
 
             }
-            return View("Index1");
+            return RedirectToAction("Index1");
         }
+
+
+
+
+
+
+
+
+
     }
 
-    public class HttpPostedFileBase
-    {
-        public string? FileName { get; internal set; }
 
-        internal void SaveAs(string path)
-        {
-            throw new NotImplementedException();
-        }
-    }
+
 }   
 
