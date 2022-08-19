@@ -23,7 +23,7 @@ namespace DogAPI_FinalProject
 
         private RestClient GetClient(string route)
         {
-            return new RestClient( route);
+            return new RestClient(route);
 
         }
 

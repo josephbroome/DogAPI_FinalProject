@@ -2,8 +2,8 @@
 <style>
     body {
         margin: auto;
-        padding:inherit;
-        background-color:black;
+        padding: inherit;
+        background-color: black;
     }
 
     table {
@@ -29,16 +29,10 @@
         box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
     }
 </style>
-<div style="color:dodgerblue ; margin-right: 600px; margin-left:600px">Search For Shelters Near You</div>
-<div class="gcse-search" style="margin-right:600px"> </div>
+<div style="color:dodgerblue ; margin-right: auto; margin-left:auto">Search For Shelters Near You</div>
+<div class="gcse-search">Search For Shelters Near You</div>
 
-<div class="first" style="color:dodgerblue">
-    <p>Upload Image</p>
-    <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)"></p>
-    <p><img id="output" width="200" /></p>
-</div>
-
-<div >
+<div>
     <table class="table table-hover table-striped table-dark position-sticky">
         <thead style="position:sticky">
             <tr>
@@ -66,7 +60,7 @@
                 <td>@dog.LifeSpan</td>
                 <td>@dog.Temperament</td>
                 <td>@dog.Origin</td>
-              @*  <td><a href=@dog.ImageURL>@dog.ImageURL</a></td>*@
+                @*  <td><a href=@dog.ImageURL>@dog.ImageURL</a></td>*@
                 <td><img class=" card-img-top" stlye="width:200px ; height:200px" src=@($"{@dog.ImageURL}") /></td>
 
             </tr>

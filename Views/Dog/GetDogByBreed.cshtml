@@ -1,15 +1,39 @@
 ﻿@model GetDogsByBreedResponse
+<style>
+    body {
+        margin: auto;
+        padding: inherit;
+        background-color: black;
+    }
 
+    table {
+        text-align: left;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 0.25rem;
+    }
+
+    tr.red th {
+        background: red;
+        color: white;
+    }
+
+    th {
+        background: white;
+        position: sticky;
+        top: 0;
+        box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    }
+</style>
 <script async src="https://cse.google.com/cse.js?cx=d1de8761617de450d">
 </script>
-<div style="color:dodgerblue ; margin-right:600px; margin-left:600px">Search For Shelters Near You</div>
+<div style="color:dodgerblue ; margin-right:500px; margin-left:500px">Search For Shelters Near You</div>
 <div class="gcse-search" style="margin-right:10px"> </div>
 
-<div class="first" style="color:dodgerblue">
-    <p>Upload Image</p>
-    <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)"></p>
-    <p><img id="output" width="200" /></p>
-</div>
 
 <h2 style="color: dodgerblue ; font-family: Arial; text-align: center">Dog information </h2>
 @if (Model == null)
@@ -46,8 +70,15 @@ else
                 <td>@dog.LifeSpan</td>
                 <td>@dog.Temperament</td>
                 <td>@dog.Origin</td>
+                @if (dog.DogBreed=="German Spitz")
+                {
+                  <td><img class="card-img-top" style="width:400px ; height: 500px" src="~/images/German-Spitz-standing-in-profile-outdoors.jpg"/></td>
+
+                }
+                else{
                 <td><img class=" card-img-top" stlye="width:400px ; height: 500px" src=@($"https://cdn2.thedogapi.com/images/{@dog.ImageID}.jpg") /></td>
                 <td><img class=" card-img-top" stlye="width:400px ; height: 500px" src=@($"https://cdn2.thedogapi.com/images/{@dog.ImageID}.png") /></td>
+                }
 
 
             </tr>
