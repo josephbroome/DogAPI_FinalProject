@@ -122,8 +122,8 @@ input[type=search] {
 }
 
     .gsc-control-cse.gsc-control-cse-en {
-        margin-right: 600px;
-        margin-left:600px;
+        margin-right:inherit;
+        margin-left:inherit;
         scrollbar-arrow-color: dodgerblue;
         image-rendering:optimizeQuality;
         border-image:url(/images/lando.jpg);

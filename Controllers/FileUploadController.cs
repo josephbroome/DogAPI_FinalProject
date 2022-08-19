@@ -15,13 +15,12 @@ namespace DogAPI_FinalProject.Controllers
 
         private readonly string _uploaded = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploaded");
 
-        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Authorize]
+        
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile formFile)
         {
@@ -33,7 +32,7 @@ namespace DogAPI_FinalProject.Controllers
                 await formFile.CopyToAsync(stream);
 
             }
-            return RedirectToAction("Index1");
+            return RedirectToAction("_Layout","Shared");
         }
 
 
