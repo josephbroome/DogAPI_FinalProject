@@ -18,7 +18,14 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<DogAPIclient, DogAPIclient>();
 
+builder.Services.AddScoped<IDbConnection>((s) =>
+{
+    IDbConnection conn = new MySqlConnection(builder.Configuration.GetConnectionString("emaildatabase"));
+    conn.Open();
+    return conn;
+});
 
+builder.Services.AddTransient<IRegisterRepository, RegisterRepository>();
 
 
 
@@ -50,11 +57,14 @@ app.Run();
 
 
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,
-        options => builder.Configuration.Bind("JwtSettings", options))
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
-        options => builder.Configuration.Bind("CookieSettings", options));
+
+
+
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+//    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,
+//        options => builder.Configuration.Bind("JwtSettings", options))
+//    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+//        options => builder.Configuration.Bind("CookieSettings", options));
 
 
 
