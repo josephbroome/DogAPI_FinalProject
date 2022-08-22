@@ -32,7 +32,7 @@ namespace DogAPI_FinalProject.Controllers
                 await formFile.CopyToAsync(stream);
 
             }
-            return RedirectToAction("_Layout","Shared");
+            return RedirectToAction("Index","Home");
         }
 
 
