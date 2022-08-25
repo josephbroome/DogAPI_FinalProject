@@ -44,6 +44,10 @@ namespace DogAPI_FinalProject.Controllers
         {
             return View();
         }
+        public IActionResult TermsOfService()
+        {
+            return View();
+        }
 
         public IActionResult Login()
         {
@@ -73,6 +77,7 @@ namespace DogAPI_FinalProject.Controllers
         private static readonly string _emailKey = System.IO.File.ReadAllText("emailPass.txt");
         private async Task<string> SendEmail(string name, string email, string messages, string phone)
         {
+
             var message = new MailMessage();
             message.To.Add(new MailAddress("josephlloydbroome@gamil.com")); // replace with receiver's email id
             message.From = new MailAddress($"{email}"); // replace with sender's email id     

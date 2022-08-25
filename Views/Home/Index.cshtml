@@ -3,11 +3,28 @@
     ViewData["Title"] = "Home Page";
 }
 <div class="text-center">
+    @if (User.Identity.IsAuthenticated)
+    {
+        @if (User.IsInRole("Dog"))
+        {
+            <h2 style="color: dodgerblue">Your role is dog</h2>
+        }
+        else
+        {
+            <h2 style="color: dodgerblue">Your role is a dog trainer</h2>
+        }
+    }
+
+</div>
+
+<div class="text-center">
     <h1 class="display-4" style="color: dodgerblue">Welcome To The Dog Database</h1>
+
 
     <h4 class="card-subtitle" style="color :dodgerblue">Some of My Favorite Breeds</h4>
 
 </div>
+
 
 <div id="multi-item-example" class="carousel slide carousel-multi-item pointer-event" data-ride="carousel">
 

@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -30,23 +34,53 @@
                             <li class="nav-item opacity-75">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CatGif">Cat GIF</a>
                             </li>
-                            <li class="nav-item opacity-75">
+                           @* <li class="nav-item opacity-75">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login/Sign-in</a>
-                            </li>
+                            </li>*@
                             <li class="nav-item opacity-75">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                             </li>
+ 
                             <li class="nav-item opacity-75">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li><li class="nav-item opacity-75">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="FileUpload" asp-action="Index">Upload Photos</a>
                             </li>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Hello @UserManager.GetUserName(User)</a>
+                                </li>
+                                <li class="nav-item">
+                                    <form id="logoutForm" method="post" class="form-inline" asp-controller="Account"
+                                      asp-action="LogOff">
+                                        <button type="submit" class="btn nav-link">Logout</button>
+                                    </form>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                                </li>
+                                <li class="nav-item">
+                                    <form id="logoutForm" method="post" class="form-inline" asp-controller="Account"
+                                      asp-action="LogOff">
+                                        <button type="submit" class="btn nav-link">Logout</button>
+                                    </form>
+                                </li>
+                            }
+                            <li class="nav-item opacity-75">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+
                             <li class="nav-item opacity-75">
                                 <div id="sb-search" class="border-5">
                                     @using (Html.BeginForm("GetDogByBreed", "Dog", FormMethod.Get))
                                     {
-                                        <div id="sb-search" class= "sb-search">
-                                            <input name="Breed" type="search"  class="form-control" placeholder="Search Breed" />
+                                        <div id="sb-search" class="sb-search">
+                                            <input name="Breed" type="search" class="form-control" placeholder="Search Breed" />
                                         </div>
 
                                     }
@@ -56,7 +90,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
         </section>
     </header>
     <div class="container">

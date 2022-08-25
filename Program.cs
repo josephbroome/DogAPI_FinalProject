@@ -1,9 +1,12 @@
 using DogAPI_FinalProject;
+using DogAPI_FinalProject.Config;
 using DogAPI_FinalProject.Data;
+using DogAPI_FinalProject.Helpers;
+using DogAPI_FinalProject.Interfaces;
+using DogAPI_FinalProject.Models;
+using DogAPI_FinalProject.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MySql.Data.MySqlClient;
-using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,28 +14,46 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(e =>
     e.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<ISendGridEmail, SendGridEmail>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration.GetSection("SendGrid"));
+builder.Services.AddAuthentication()
+.AddGoogle(options =>
+{
+    options.ClientId = GoogleAPIConfig.GetGoogleClientID();
+    options.ClientSecret = GoogleAPIConfig.GetGoogleClientSecret();
+});
+builder.Services.Configure<IdentityOptions>(opt =>
+{
+    opt.Password.RequiredLength = 5;
+    opt.Password.RequireLowercase = true;
+    opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(10);
+    opt.Lockout.MaxFailedAccessAttempts = 5;
+    //opt.SignIn.RequireConfirmedAccount = true;
+
+});
+
+
+builder.Services.AddSingleton<DogAPIclient, DogAPIclient>();
 
 //builder.Services.AddScoped<IDbConnection>((s) =>
 //{
-//    IDbConnection conn = new  (builder.Configuration.GetConnectionString(""));
+//    IDbConnection conn = new MySqlConnection(builder.Configuration.GetConnectionString("emaildatabase"));
 //    conn.Open();
 //    return conn;
 //});
 
-builder.Services.AddSingleton<DogAPIclient, DogAPIclient>();
+//builder.Services.AddTransient<IRegisterRepository, RegisterRepository>();
 
-builder.Services.AddScoped<IDbConnection>((s) =>
-{
-    IDbConnection conn = new MySqlConnection(builder.Configuration.GetConnectionString("emaildatabase"));
-    conn.Open();
-    return conn;
-});
+//builder.Services.AddDistributedMemoryCache();
 
-builder.Services.AddTransient<IRegisterRepository, RegisterRepository>();
-
-
+//builder.Services.AddSession(options =>
+//{
+//    options.IdleTimeout = TimeSpan.FromSeconds(10);
+//    options.Cookie.HttpOnly = true;
+//    options.Cookie.IsEssential = true;
+//});
 
 
 var app = builder.Build();
@@ -48,12 +69,10 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthentication();
-
 app.UseAuthorization();
+//app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
