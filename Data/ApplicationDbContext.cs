@@ -14,6 +14,21 @@ namespace DogAPI_FinalProject.Data
         
         
         }
-    
+        public DbSet<AppUser> AppUser { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<AppUser>()
+                .Ignore(p => p.RoleId);
+
+            builder.Entity<AppUser>()
+                .Ignore(p => p.Role);
+
+            builder.Entity<AppUser>()
+                .Ignore(p => p.RoleList);
+        }
+
     }
 }
