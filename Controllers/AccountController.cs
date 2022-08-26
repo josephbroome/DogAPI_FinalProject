@@ -213,7 +213,7 @@ namespace DogAPI_FinalProject.Controllers
         [HttpGet]
         public async Task<IActionResult> Register(string? returnUrl = null)
         {
-            if(!await _roleManager.RoleExistsAsync("Dog"))
+            if(!await _roleManager.RoleExistsAsync("Trainer"))
             {
                 await _roleManager.CreateAsync(new IdentityRole("Dog"));
                 await _roleManager.CreateAsync(new IdentityRole("Trainer"));
@@ -250,7 +250,7 @@ namespace DogAPI_FinalProject.Controllers
                 var result = await _userManager.CreateAsync(user, registerViewModel.Password);
                 if (result.Succeeded)
                 {
-                    if(registerViewModel.RoleList != null && registerViewModel.RoleSelected.Length > 0 && registerViewModel.RoleSelected == "Trainer")
+                    if(registerViewModel.RoleSelected.Length > 0 && registerViewModel.RoleSelected == "Trainer")
                     {
                         await _userManager.AddToRoleAsync(user, "Trainer");
 
