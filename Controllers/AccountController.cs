@@ -114,33 +114,12 @@ namespace DogAPI_FinalProject.Controllers
                 await _signInManager.UpdateExternalAuthenticationTokensAsync(info);
                 return LocalRedirect(returnurl);
             }
-            else
-            {
-                if (!await _roleManager.RoleExistsAsync("Dog"))
-                {
-                    await _roleManager.CreateAsync(new IdentityRole("Dog"));
-                    await _roleManager.CreateAsync(new IdentityRole("Trainer"));
-                }
-                List<SelectListItem> listItems = new List<SelectListItem>();
-                listItems.Add(new SelectListItem()
-                {
-                    Value = "Dog",
-                    Text = "Dog",
-
-                });
-                listItems.Add(new SelectListItem()
-                {
-                    Value = "Trainer",
-                    Text = "Trainer",
-
-                });
                 ExternalLoginViewModel registerViewModel = new ExternalLoginViewModel();
-                registerViewModel.RoleList = listItems;
                 ViewData["ReturnUrl"] = returnurl;
                 ViewData["ProviderDisplayName"] = info.ProviderDisplayName;
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
                 return View("ExternalLoginConfirmation", new ExternalLoginViewModel { Email = email});
-            }
+            
         }
 
         [HttpGet]
