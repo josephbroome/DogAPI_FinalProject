@@ -6,7 +6,9 @@ namespace DogAPI_FinalProject.Models
 {
     public class AppUser : IdentityUser
     {
+        public string? NickName { get; set; }    
         public string Email { get; set; }
+        
         //public string NickName { get; set; }
         [NotMapped]
         public string? RoleId { get; set; }

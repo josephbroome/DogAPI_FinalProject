@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DogAPI_FinalProject.Models.ViewModels
 {
@@ -11,6 +12,11 @@ namespace DogAPI_FinalProject.Models.ViewModels
         [Required]
         [Display(Name = "UserName")]
         public string UserName { get; set; }
+
+        [Required]
+        [Display(Name = "NickName")]
+        public string NickName {get; set; } 
+
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]

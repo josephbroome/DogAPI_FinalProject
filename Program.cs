@@ -21,8 +21,8 @@ builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration.GetSe
 builder.Services.AddAuthentication()
 .AddGoogle(options =>
 {
-    options.ClientId = GoogleAPIConfig.GetGoogleClientID();
-    options.ClientSecret = GoogleAPIConfig.GetGoogleClientSecret();
+    options.ClientId = GoogleClientIdConfig.GetGoogleCLientId();
+    options.ClientSecret = GoogleClientSecretConfig.GetGoogleClientSecret();
 });
 builder.Services.Configure<IdentityOptions>(opt =>
 {

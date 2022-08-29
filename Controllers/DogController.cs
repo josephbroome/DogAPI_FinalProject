@@ -34,13 +34,13 @@ namespace DogAPI_FinalProject.Controllers
             return View(new GetDogBreedsResponse(breeds));
         }
 
-        public IActionResult GetDogImage(string ImageID)
-        {
-            var image = _client.GetDogImage(ImageID);
+        //public IActionResult GetDogImage(string ImageID)
+        //{
+        //    var image = _client.GetDogImage(ImageID);
 
-            return View(new GetDogImageResponse(image));
+        //    return View(new GetDogImageResponse(image));
 
-        }
+        //}
 
     }
 }
